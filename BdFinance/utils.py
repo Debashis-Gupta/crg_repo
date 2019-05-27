@@ -16,10 +16,10 @@ from xhtml2pdf import pisa
 
 def render_to_pdf(template,context={}):
     template = get_template(template)
-    # context= {'pagesize':'A4'}
+    context= {}
     html=template.render(context)
-    result= io.BytesIO()
-    pdf=pisa.pisaDocument(io.BytesIO(html.encode("ISO-8859-1 ")),result)
+    result= io.StringIO(template)
+    pdf=pisa.pisaDocument(io.StringIO(html.encode("ISO-8859-1 ")),result)
     if not pdf.err:
         return HttpResponse(result.getvalue(),content_type='application/pdf')
     else:
