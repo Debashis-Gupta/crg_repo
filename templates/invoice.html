@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+
+      <style>
+          .head_title{
+              font-weight: bold;
+              background: azure;
+              font-size: 18px;
+
+          }
+      </style>
+  </head>
+  <body>
+    <div class="container">
+        <table class="table table-bordered" id="tbldata">
+
+
+
+          <thead class="">
+          <tr>
+              <td colspan="3" class=""><h1 class="text-center" style="font-weight: bold;">Credit Risk Grading Score Sheet</h1></td>
+
+          </tr>
+          <tr>
+              <th colspan=""> Reference No:{{ ref }}</th>
+              <td colspan=""> Date:{{ date }}</td>
+          </tr>
+          <tr>
+              <th colspan="1">Borrower Name </th>
+              <td colspan="2">{{ borrower }}</td>
+          </tr>
+          <tr>
+              <th colspan="1">Group Name </th>
+              <td colspan="2">{{ group }}</td>
+          </tr>
+          <tr>
+              <th colspan="1">Industry / Sector </th>
+              <td colspan="2">{{ sector }}</td>
+          </tr>
+          <tr>
+              <th colspan="1"> Date of Financials </th>
+              <td colspan="2">{{ financial }}</td>
+          </tr>
+          <tr>
+              <th colspan="1">Completed By </th>
+              <td colspan="2">{{ completedby }}</td>
+          </tr>
+          <tr>
+              <th colspan="1">Approved By </th>
+              <td colspan="2">{{ approvedby }}</td>
+          </tr>
+          <tr>
+              <th colspan="1">Aggregate Score </th>
+              <td id="fullTotal" colspan="2">{{ fullTotal }}</td>
+          </tr>
+          <tr>
+              <th colspan="1">Risk Grade </th>
+              <td id="Grade" colspan="2">{{ grade }}</td>
+          </tr>
+
+
+            <tr>
+
+              <th scope="col" class="col-6 text-center">Criteria</th>
+              <th scope="col" class="col-3 text-center" >Actual Parameter</th>
+              <th scope="col" class="col-3 text-center">Valued</th>
+            </tr>
+          <tr>
+              <th class="head_title">A. Financial Risk (Weight 50%)</th>
+          </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td>1. Debt Equity Ratio=Total Liabilities/Tangible Networth</td>
+{#              <td><input type="text" value="{{ Debt }}"></td>#}
+              <td id="Debt" onclick="changeValue()">{{ Debt }}</td>
+              <td id="debt">{{ debt }}</td>
+            </tr>
+            <tr>
+              <td>2. Current Ratio=Current Asset/Current Liabilities</td>
+              <td onclick="changeValue2()" id="Cur_rat">{{ Cur_rat }}</td>
+              <td id="cur_rat">{{ cur_rat }}</td>
+            </tr>
+            <tr>
+              <td>3. Operating Profit Margin=(Operating Profit/Sales)X100</td>
+              <td id="Opm" onclick="changeValue3()">{{ Opm }}</td>
+              <td id="opm">{{ opm }}</td>
+            </tr>
+            <tr>
+              <td>4. Interest Coverage Ratio</td>
+              <td id="Icr" onclick="changeValue4()">{{ Icr }} </td>
+              <td id="icr">{{ icr }}</td>
+            </tr>
+          <th colspan="2" >Total Score- Financial Risk</th>
+            <td id="financial">{{ totalA }}</td>
+           <tr>
+              <th class="head_title">B. Business/Industry (Weight 15%)</th>
+                <tr>
+              <td>1. Sales in BDT Crore</td>
+              <td id="Sales" onclick="changeValue5()">{{ Sales }}</td>
+              <td id="sales">{{ sales }}</td>
+            </tr>
+            <tr>
+              <td>2. Business Outlook</td>
+              <td>{{ Outlook }}</td>
+              <td id="outlook">{{ outlook }}</td>
+            </tr>
+            <tr>
+              <td>3. Industry Growth</td>
+
+              <td>{{ Ind_grow }}</td>
+              <td id="ind_grow">{{ ind_grow }}</td>
+            </tr>
+            <tr>
+              <td>4. Market Competition</td>
+
+              <td>{{ Mark_comp }}</td>
+              <td id="mark_comp">{{ mark_comp }}</td>
+            </tr>
+            <tr>
+              <td>5. Entry/Exit Barrier</td>
+
+              <td>{{ Barrier }}</td>
+              <td id="barrier">{{ barrier }}</td>
+            </tr>
+          <th colspan="2" >Total Score-Business/Industry Risk</th>
+          <td id="industry">{{ totalB }}</td>
+           </tr>
+
+           <tr>
+              <th class="head_title">C. Management Risk (Weight 15%)</th>
+          </tr>
+          <tr>
+              <td>1. Experience (Top Management & Management Team)</td>
+
+              <td>{{ Experience }}</td>
+              <td>{{ experience }}</td>
+            </tr>
+            <tr>
+              <td>2. Second Line/Succession</td>
+
+              <td>{{ Succession }}</td>
+              <td>{{ succession }}</td>
+            </tr>
+            <tr>
+              <td>3. Team Work</td>
+
+              <td>{{ TeamWork }}</td>
+              <td>{{ teamWork }}</td>
+            </tr>
+
+          <th colspan="2" >Total Score-Management Risk</th>
+            <td id="management">{{ totalC }}</td>
+          <tr>
+              <th class="head_title">D. Security Risk (Weight 10%)</th>
+          </tr>
+          <tr>
+              <td>1. Security Coverage (Primary)</td>
+
+              <td>{{ Security }}</td>
+              <td>{{ security }}</td>
+            </tr>
+            <tr>
+              <td>2. Collateral Coverage</td>
+
+              <td>{{ Collateral }}</td>
+              <td>{{ collateral }}</td>
+            </tr>
+            <tr>
+              <td>3. Support (Guarantee)</td>
+
+              <td>{{ Guarantee }}</td>
+              <td>{{ guarantee }}</td>
+            </tr>
+
+          <th colspan="2" >Total Score-Security Risk</th>
+            <td id="security">{{ totalD }}</td>
+
+          <tr>
+              <th class="head_title">E. Relationship Risk (Weight 10%)</th>
+          </tr>
+
+
+         <tr>
+              <td>1. Utilization of Limit (Actual/Projection)</td>
+              <td>{{ Utilization }}</td>
+              <td>{{ utilization }}</td>
+            </tr>
+            <tr>
+              <td>2. Account Conduct</td>
+              <td>{{ Conduct }}</td>
+              <td>{{ conduct }}</td>
+            </tr>
+            <tr>
+              <td>3. Compliance of Covenants/Conditions</td>
+              <td>{{ Conditions }}</td>
+              <td>{{ conditions }}</td>
+            </tr>
+            <tr>
+              <td>4. Personal Deposits</td>
+              <td>{{ Deposits }}</td>
+              <td>{{ deposits }}</td>
+            </tr>
+          <th colspan="2" >Total Score-Relationship Risk</th>
+            <td id="relation">{{ totalE }}</td>
+            <tr>
+          <th class="head_title" colspan="2" >Grand Total-All Risk</th>
+            <td>{{ fullTotal }}</td>
+            </tr>
+{#           <tr>#}
+{#          <th class="head_title" colspan="2" >Risk Grade is </th>#}
+{#            <td>{{ grade }}</td>#}
+{#            </tr>#}
+          </tbody>
+
+
+
+    </table>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+      <style>
+          .size{
+              font-size: 14px;
+
+          }
+
+      </style>
+  </head>
+  <body>
+    <div class="container">
+        <h1 class="text-center" style="font-weight: bold;">Credit Risk Grading Score Sheet</h1>
+
+    </div>
+
+    <div class="container">
+
+        <form method="POST" action="{% url 'table' %}" style="margin-bottom: 50px;" enctype="multipart/form-data">
+              {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                    <label for="" class="">Reference No :</label>
+                  <input type="text" name="ref" class="form-control" placeholder="#12345">
+                </div>
+                <div class="col-6">
+                    <label for="" class="">Date :</label>
+                  <input type="date" name="date" class="form-control" placeholder="#05/03/19">
+                </div>
+            </div>
+{#            details          #}
+            <h4 class="size" style="margin-top: 10px;">Details <h4>
+          <div class="class" style="margin-left: 20px; ">
+              <div class="form-group row size" style="margin-top: 15px;">
+                <label for="" class="col-sm-2 col-form-label">Borrower Name :</label>
+                <div class="col-sm-10">
+                  <input type="text" name="borrower"  class="form-control" id="text" placeholder=" =    ">
+                </div>
+
+              </div>
+              <div class="form-group row size">
+                <label for="" class="col-sm-2 col-form-label">Group Name (if any)</label>
+                <div class="col-sm-10">
+                  <input type="text" name="group" class="form-control" id="text" placeholder=" =    ">
+                </div>
+
+              </div>
+              <div class="form-group row size">
+                <label for="" class="col-sm-2 col-form-label">Industry/Sector:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="sector" class="form-control" id="text" placeholder=" =    ">
+                </div>
+              </div>
+              <div class="form-group row size">
+                <label for="" class="col-sm-2 col-form-label"> Date of Financials:</label>
+                <div class="col-sm-10">
+                  <input type="date" name="financial" class="form-control" id="text" placeholder=" = Date   ">
+                </div>
+
+              </div>
+              <div class="form-group row size">
+                <label for="" class="col-sm-2 col-form-label">Completed By :</label>
+                <div class="col-sm-10">
+                  <input type="text" name="completedby" class="form-control" id="text" placeholder=" =   ">
+                </div>
+
+              </div>
+              <div class="form-group row size">
+                <label for="" class="col-sm-2 col-form-label"> Approved By:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="approvedby" class="form-control" id="text" placeholder=" =    ">
+                </div>
+
+              </div>
+
+          </div>
+
+            <div class="" style="margin-bottom: 15px;"></div>
+          <h4>A. Financial Risk (Weight 50%) <h4>
+          <div class="class" style="margin-left: 20px; ">
+              <div class="form-group row size" style="margin-top: 15px;">
+                <label for="" class="col-sm-2 col-form-label">1. Debt Equity Ratio :</label>
+                <div class="col-sm-10">
+                  <input type="text" name="debt1"  class="form-control" id="text" placeholder=" =    Total Liablities/Tangible NetWorth">
+                </div>
+
+              </div>
+              <div class="form-group row size">
+                <label for="" class="col-sm-2 col-form-label">2. Current Ratio :</label>
+                <div class="col-sm-10">
+                  <input type="text" name="cur_rat" class="form-control" id="text" placeholder=" =    Current Asset / Current Liablities">
+                </div>
+
+              </div>
+              <div class="form-group row size">
+                <label for="" class="col-sm-2 col-form-label">3. Operating Profit Margin :</label>
+                <div class="col-sm-10">
+                  <input type="text" name="opm" class="form-control" id="text" placeholder=" =    (Operating Profit / Sales) x 100">
+                </div>
+              </div>
+              <div class="form-group row size">
+                <label for="" class="col-sm-2 col-form-label">4. Interest Coverage Ratio :</label>
+                <div class="col-sm-10">
+                  <input type="text" name="icr" class="form-control" id="text" placeholder=" =    Enter the ratio">
+                </div>
+
+              </div>
+
+          </div>
+        <h4>B. Business/Industry (Weight 15%) <h4>
+
+          <div class="class" style="margin-left: 20px; ">
+              <div class="form-group row size" style="margin-top: 15px;">
+                <label for="" class="col-sm-2 col-form-label">1. Sales in BDT Crore :</label>
+                <div class="col-sm-10">
+                  <input type="text" name="sales" class="form-control" id="text" placeholder=" =    Enter the Value">
+                </div>
+
+              </div>
+              <label class="" for="">2.Business Outlook</label>
+                  <select name="OutLook" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                        <option selected>Choose...</option>
+                        <option value="3">Favourable</option>
+                        <option value="2">Stable</option>
+                        <option value="1">Slightly Uncertain</option>
+                        <option value="0">Cause for Concern</option>
+                  </select>
+
+             <label class="" for="">3.Industry Growth</label>
+                              <select name="ind_grow" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                    <option selected>Choose...</option>
+                                    <option value="3">Strong(10%+)</option>
+                                    <option value="2">Good(>5% to 10%)</option>
+                                    <option value="1">Moderate(1% to 5%)</option>
+                                    <option value="0">No Growth(<1%)</option>
+                              </select>
+             <label class="" for="">4.Market Competition</label>
+                              <select name="mark_comp" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                    <option selected>Choose...</option>
+                                    <option value="2">Dominant Player</option>
+                                    <option value="1">Moderately Competitive</option>
+                                    <option value="0">Highly Competitive</option>
+
+                              </select>
+
+             <label class="" for="">5.Entry/Exit Barrier</label>
+                              <select name="barrier" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                    <option selected>Choose...</option>
+                                    <option value="0">Easy</option>
+                                    <option value="2">Difficult</option>
+                                    <option value="1">Average</option>
+
+                              </select>
+
+            <h4>c. Management Risk (Weight 15%) <h4>
+
+                 <label class="" for="">1. Experience(Top Management and Management Team)</label>
+                                      <select name="experience_m&m" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="5">More than 10 years in the related line of business</option>
+                                            <option value="3">5-10 years in the related line of business </option>
+                                            <option value="2">1-5 years in the related line of business</option>
+                                            <option value="0">No experience</option>
+
+                                      </select>
+                <label class="" for="">Second Line/Succession</label>
+                              <select name="succession" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                    <option selected>Choose...</option>
+                                    <option value="5">Ready Succession</option>
+                                    <option value="3">Succession within 2-3 years</option>
+                                    <option value="2">Succession within 3-5 years</option>
+                                    <option value="0">Succession in question</option>
+
+                              </select>
+              <label class="" for="">Team Work</label>
+                                      <select name="teamWork" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="3">Moderate</option>
+                                            <option value="5">Very Good</option>
+                                            <option value="2">Poor</option>
+                                          <option value="0">Regular Conflict</option>
+                                      </select>
+
+           <h4>D.Security Risk (Weight 10%) <h4>
+            <label class="" for="">Security Coverage(Primary)</label>
+                                      <select name="security" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="4">Fully pledged facilities /substantial cash covered</option>
+                                            <option value="3"> Registered Hypothecation (1st charge / 1st pari passu charge)</option>
+                                            <option value="2">2nd charge / inferrior charge</option>
+                                            <option value="1"> Simple Hypothecation/Negative Lien</option>
+                                          <option value="0"> No security</option>
+                                      </select>
+            <label class="" for="">Collateral Coverage</label>
+                                      <select  name="collateral" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="4">Registered Mortage on Municipal Corporation/prime area property</option>
+                                            <option value="3">Registered Mortage on Pourashava/Semi urban area property</option>
+                                            <option value="2">Equitable Mortage or no property but plant and machinery as collateral</option>
+                                            <option value="1"> Negative lien on collateral</option>
+                                          <option value="0">No colleteral </option>
+                                      </select>
+
+
+            <label class="" for="">Support(Guarantee)</label>
+                                      <select name="guarantee" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="1">Personal Guarantee or Corporate Guarantee with average financial strength</option>
+                                            <option value="2">Personal Guarantee with high networth or Strong Corporate Guarantee(Guarantors' Grading Accecptable or Higher) </option>
+                                          <option value="0">No support Guarantee</option>
+                                      </select>
+
+             <h4>E. Relationship Risk (Weight 10%)<h4>
+                 <label class="" for="">1. Utilization of Limit (Actual/Projection)</label>
+                                      <select name="utilization" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="3">More than 70%</option>
+                                            <option value="2">51% - 70%</option>
+                                          <option value="1">30% - 50%</option>
+                                          <option value="0">Less than 30%</option>
+                                      </select>
+                 <label class="" for="">2. Account Conduct</label>
+                                      <select name="conduct" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                          <option selected>Choose...</option>
+                                          <option value="3">More than 3 years accounts with faultless record</option>
+                                          <option value="2">Less than 3 years accounts with faultless record </option>
+                                          <option value="1">Accounts having satisfactory dealings with some late payments</option>
+                                          <option value="0">Frequent past dues & irregular dealings in account</option>
+                                      </select>
+
+                  <label class="" for="">3. Compliance of Covenants/Conditions</label>
+                                      <select name="conditions" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="2">Full Compliance</option>
+                                            <option value="1"> Some Non-Compliance</option>
+                                          <option value="0">No Compliance</option>
+                                      </select>
+
+
+                  <label class="" for="">4. Personal Deposits</label>
+                                      <select name="deposits" class="custom-select inline-group" id="inlineFormCustomSelectPref">
+                                            <option selected>Choose...</option>
+                                            <option value="2">All personal accounts of the key business Sponsors/Pincipals are maintained in the FIs, with significant deposits</option>
+                                            <option value="1">Principals maintain some accounts, but have relationship with other FIs</option>
+                                          <option value="0">No depository relationship</option>
+                                      </select>
+
+            <button type="submit" class="btn btn-success" style="margin-top: 15px;">Enter</button>
+          </div>
+        </form>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
